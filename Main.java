@@ -18,12 +18,15 @@ class Main {
 		truthData = Interpreter.makeTruthTable(proposition);
 		i = 0;
 		endProgram = false;
+
+		StdAudio.play("click.wav");
 		
 		final Runnable playBeat = () -> {
 			if (truthData[i]) {
-				System.out.println("Click");
+				StdAudio.play("click.wav");
+				System.out.println("true");
 			} else {
-				System.out.println(".");
+				System.out.println("false");
 			}
 			i++;
 			if (i >= truthData.length) {
