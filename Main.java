@@ -8,40 +8,31 @@ import stdlib.StdAudio;
 class Main {
 	private static int i;
 	private static boolean[] truthData;
-	private static boolean endProgram;
-	private static ScheduledFuture<?> beatHandler; 
 	
 	public static void main(String[] args) throws InterruptedException {
 		final Proposition proposition = new Proposition(args[0]);
 		final long beatLength = Long.parseLong(args[1]);
 		
-		truthData = Interpreter.makeTruthTable(proposition);
 		i = 0;
-		endProgram = false;
-
-		StdAudio.play("click.wav");
+		truthData = Interpreter.makeTruthTable(proposition);
+		System.out.println(Arrays.toString(truthData));
 		
 		final Runnable playBeat = () -> {
 			if (truthData[i]) {
 				StdAudio.play("click.wav");
-				System.out.println("true");
+				// System.out.println("true");
 			} else {
-				System.out.println("false");
+				// System.out.println("false");
 			}
 			i++;
 			if (i >= truthData.length) {
-				endProgram = true;
-				beatHandler.cancel(true);
+				i = 0;
 			}
 		};
 
-		beatHandler = Executors.newScheduledThreadPool(1).
-			scheduleAtFixedRate(playBeat, 0, beatLength, MILLISECONDS);
-		
-		while (true) {
-			if (endProgram) {
-				System.out.println("Program ended");
-			}
-		}
+		final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
+		final ScheduledFuture<?> beatHandler = 
+			scheduler.scheduleAtFixedRate(playBeat, 0, beatLength, MILLISECONDS);
 	}
 }

@@ -37,7 +37,7 @@ class Proposition {
 			return null;
 		} else if (tokens.size() == 1) {
 			if (tokens.get(0) instanceof Statement) {
-				return new Node(tokens.get(0));
+				return new Node<Token>(tokens.get(0));
 			} else {
 				throw new RuntimeException("Error occured while constructing parseTree");
 			}
@@ -69,6 +69,19 @@ class Proposition {
 					indexLowestPrecedence = i;
 				}
 			}
+		}
+
+		if (lowestPrecedence == null) {
+			System.out.println(tokens);
+			if (tokens.size() > 0) {
+				if (tokens.get(0).equals(Parenthesis.OPEN)) {
+					return makeParseTree(tokens.subList(1, tokens.size() - 1));
+				} else {
+					return new Node<Token>(tokens.get(0));
+				}
+			}
+
+			return null;
 		}
 
 		if (lowestPrecedence.equals(Operator.NOT)) {
