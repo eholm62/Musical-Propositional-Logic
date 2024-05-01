@@ -71,6 +71,7 @@ class Proposition {
 			}
 		}
 
+		// weird stuff 
 		if (lowestPrecedence == null) {
 			System.out.println(tokens);
 			if (tokens.size() > 0) {

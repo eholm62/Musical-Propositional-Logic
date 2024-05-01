@@ -19,10 +19,10 @@ class Main {
 		
 		final Runnable playBeat = () -> {
 			if (truthData[i]) {
-				StdAudio.play("click.wav");
-				// System.out.println("true");
+				// StdAudio.play("click.wav");
+				System.out.println("click");
 			} else {
-				// System.out.println("false");
+				System.out.println(".");
 			}
 			i++;
 			if (i >= truthData.length) {
