@@ -41,10 +41,6 @@ class Proposition {
 			} else {
 				throw new RuntimeException("Error occured while constructing parseTree");
 			}
-		} else if (tokens.get(0).equals(Parenthesis.OPEN)) {
-			if (tokens.get(tokens.size() - 1).equals(Parenthesis.CLOSED)) {
-				return makeParseTree(tokens.subList(1, tokens.size() - 1));
-			}
 		}
 
 		
@@ -59,6 +55,9 @@ class Proposition {
 				parenthesisDepth--;
 				continue;
 			} else if (parenthesisDepth > 0) {
+				if (parenthesisDepth < 0) { 
+					throw new RuntimeException("Each close parethesis must correspond to an open perenthesis");
+				}
 				continue;
 			} else if (lowestPrecedence == null && tokens.get(i) instanceof Operator) {
 				lowestPrecedence = (Operator)tokens.get(i);
@@ -71,18 +70,13 @@ class Proposition {
 			}
 		}
 
-		// weird stuff 
 		if (lowestPrecedence == null) {
-			System.out.println(tokens);
-			if (tokens.size() > 0) {
+			if (tokens.get(tokens.size() - 1).equals(Parenthesis.CLOSED)) {
 				if (tokens.get(0).equals(Parenthesis.OPEN)) {
 					return makeParseTree(tokens.subList(1, tokens.size() - 1));
-				} else {
-					return new Node<Token>(tokens.get(0));
 				}
 			}
-
-			return null;
+			throw new RuntimeException("Each open parenthesis must correspend to a close parenthesis");
 		}
 
 		if (lowestPrecedence.equals(Operator.NOT)) {
