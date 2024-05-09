@@ -7,35 +7,52 @@ import stdlib.StdAudio;
 
 class Main {
 	private static int i;
-	private static boolean[] truthData;
+	private static boolean[] primaryTruthData;
+	private static boolean[] secondaryTruthData;
 	private static boolean useAudio;
 	
 	public static void main(String[] args) throws InterruptedException {
-		final Proposition proposition = new Proposition(args[0]);
-		final long beatLength = Long.parseLong(args[1]);
+		final Proposition primaryProposition = new Proposition(args[0]);
+		final Proposition secondaryProposition = new Proposition(args[1]);
+		final long beatLength = Long.parseLong(args[2]);
 		
-		if (args.length > 2) {
+		if (args.length > 3) {
 			useAudio = Boolean.parseBoolean(args[2]);
 		} else {
 			useAudio = true;
 		}
 
-		i = 0;
-		truthData = Interpreter.makeTruthTable(proposition);
-		System.out.println(Arrays.toString(truthData));
+		primaryTruthData = Interpreter.makeTruthTable(primaryProposition);
+		secondaryTruthData = Interpreter.makeTruthTable(secondaryProposition);
+
+		if (primaryTruthData.length != secondaryTruthData.length) {
+			throw new RuntimeException("Primary and secondary propositions must have truth tables of the same size");
+		}
 		
+		System.out.println(Arrays.toString(primaryTruthData));
+		System.out.println(Arrays.toString(secondaryTruthData));
+		
+		i = 0;
 
 		final Runnable playBeat = () -> {
-			if (truthData[i]) {
-				if (useAudio) {
-					StdAudio.play("click.wav"); 
+			if (primaryTruthData[i]) {
+				if (secondaryTruthData[i]) {
+					if (useAudio) StdAudio.play("accent.wav");
+					System.out.println("+");
+				} else {
+					if (useAudio) StdAudio.play("click.wav"); 
+					System.out.println("-");
 				}
-				System.out.println("click");
 			} else {
-				System.out.println(".");
+				if (secondaryTruthData[i]) {
+					if (useAudio) StdAudio.play("ghost.wav");
+					System.out.println(".");
+				} else {
+					System.out.println();
+				}
 			}
 			i++;
-			if (i >= truthData.length) {
+			if (i >= primaryTruthData.length) {
 				i = 0;
 			}
 		};
