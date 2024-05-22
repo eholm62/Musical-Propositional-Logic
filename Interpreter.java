@@ -2,21 +2,28 @@ import java.util.HashMap;
 import java.util.Arrays;
 import java.util.List;
 
-// add better comments and error messages
 class Interpreter {
 
+	/** implements the propositional logic conditional operator */
 	private static boolean conditional(boolean p, boolean q) {
 		return !p || q;
 	}
 
+	/** implements the propositional logic bicoonditional operator */
 	private static boolean biconditional(boolean p, boolean q) {
 		return conditional(p, q) && conditional(q, p);
 	}
 
+	/** evaluates the proposition given the truth values provided
+	 * for each atomic statement in the HashMap
+	 */
 	public static boolean eval(Proposition proposition, HashMap<Proposition.Statement, Boolean> statementData) {
 		return eval(proposition.getHeadNode(), statementData);
 	}
 
+	/** evaluates the node given the truth values provided
+	 * for each atomic statement in the HashMap
+	 */
 	public static boolean eval(Node<Proposition.Token> headNode, HashMap<Proposition.Statement, Boolean> statementData) {
 		if (headNode.getData() instanceof Proposition.Statement) {
 			Boolean result = statementData.get((Proposition.Statement)(headNode.getData()));
@@ -59,6 +66,10 @@ class Interpreter {
 		}
 	}
 
+
+	/** constructs the very last column of the truth table 
+	 * for the proposition as a boolean array
+	 */
 	public static boolean[] makeTruthTable(Proposition proposition) {
 		List<Proposition.Statement> orderedStatements = proposition.getStatementsOrdered();
 		boolean[] input = new boolean[orderedStatements.size()];

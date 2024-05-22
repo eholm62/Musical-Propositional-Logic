@@ -17,7 +17,7 @@ class Main {
 		final long beatLength = Long.parseLong(args[2]);
 		
 		if (args.length > 3) {
-			useAudio = Boolean.parseBoolean(args[2]);
+			useAudio = Boolean.parseBoolean(args[3]);
 		} else {
 			useAudio = true;
 		}
@@ -34,6 +34,7 @@ class Main {
 		
 		i = 0;
 
+		// the code that runs every beat
 		final Runnable playBeat = () -> {
 			if (primaryTruthData[i]) {
 				if (secondaryTruthData[i]) {
@@ -57,8 +58,10 @@ class Main {
 			}
 		};
 
+		// initialize the scheduler
 		final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
+		// schedule the beats
 		final ScheduledFuture<?> beatHandler = 
 			scheduler.scheduleAtFixedRate(playBeat, 0, beatLength, MILLISECONDS);
 	}

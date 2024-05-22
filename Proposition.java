@@ -3,10 +3,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.LinkedList;
 	
-// add better comments and error messages
-// better organization
-// convert directly from parsetree to ordered statements
-// less room for inconsistency between tree, tokens, and string representation
 class Proposition {
 		
 	private Node<Token> headNode;

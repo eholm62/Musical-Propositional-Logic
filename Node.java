@@ -1,5 +1,12 @@
 import java.util.ArrayList;
 
+/** Node that stores data of 
+ * type T and points to any
+ * number of other ordered
+ * nodes, in a specific order.
+ * Whichever node is added first
+ * is the first node, and so on.
+ */
 class Node<T> {
 	private final T data;
 	private ArrayList<Node<T>> nextNodes;
