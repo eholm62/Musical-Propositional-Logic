@@ -3,10 +3,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.LinkedList;
 	
+/** Represents a propositional logic statement,
+ * made up of atomic statements, operators, and parenthesis.
+ * Each atomic statements is represented by a sequence of 
+ * capital letters. The same sequence is considered
+ * the same atomic statement.
+ */
 class Proposition {
-		
+	// head node of the parse tree
 	private Node<Token> headNode;
+
+	// list of statements ordered alphabetically
 	private LinkedList<Statement> orderedStatements;
+
+	// string representation of the proposition
 	private String stringValue;
 		
 	public Proposition(String propositionString) {
