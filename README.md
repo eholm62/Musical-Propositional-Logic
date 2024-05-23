@@ -41,6 +41,11 @@ If both the primary and secondary propositions are false, there is a rest on tha
 secondary is true but the primary is false, it's a ghost. If the primary is true and the secondary
 is false, it's just a regular click. If both the primary and secondary are true, it's an accent.
 
-## How to use
-To run the program
-
+## How to use it
+To run the program, navigate to the base directory of the project if you aren't yet there. Then, run
+the following command `. bash_config.sh`. This only has to be done once unless a new terminal has been opened
+or if your aliases or classpath have been modified. Once you've worked that out, run main with this template: 
+`java Main "[primary]" "[secondary]" [beat length]`. Insert your primary and secondary propositions within quotes,
+and the leangth of one beat in milliseconds. You may also add one extra parameter at the end, `false`, if you would
+like the program to run silently and only print a visual representation of the rhythm. Here is an example of a
+valid execution: `java Main "-A v B ^ C > D <> E" "A V B V C V D V E" 100`.
