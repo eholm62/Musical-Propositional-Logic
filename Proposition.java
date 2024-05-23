@@ -19,6 +19,15 @@ class Proposition {
 	// string representation of the proposition
 	private String stringValue;
 		
+	/** Constructs a new proposition  that is represented 
+	 * by the provided string. It interprets any sequence
+	 * of capital letters as an atomic statment, and open and
+	 * closed parenthesis as exactly what they are. In terms 
+	 * of logical connectives, '-' is negation (NOT), 
+	 * 'v' is disjunction (OR), '^' is conjunction (AND),
+	 * '>' is conditional (if __ then __), and
+	 * '<>' is biconditional (if and only if __ then __).
+	*/
 	public Proposition(String propositionString) {
 		ArrayList<Token> tokens = tokenize(propositionString);
 		this.headNode = makeParseTree(tokens);
@@ -26,18 +35,34 @@ class Proposition {
 		this.stringValue = stringFromTokens(tokens);
 	}	
 		
+	/** Returns the proper string representation
+	 * of the proposition, which is not the same
+	 * as the string provided to the constructor.
+	 * Conjunction (AND) is '∧',
+	 * disjunction (OR) is '∨',
+	 * negation (NOT) is '¬',
+	 * conditional (if __ then __) is '→', and
+	 * biconditional (if and only if __ then __) is '↔'.
+	 */
 	public String toString() {
 		return stringValue;
 	}	
 		
+	/** Returns the head node of the parsetree */
 	public Node<Token> getHeadNode() {
 		return headNode;
 	}	
 		
+	/** Returns the list of atomic statements 
+	 * ordered alphabetically.
+	 */
 	public LinkedList<Statement> getStatementsOrdered() {
 		return orderedStatements;
 	}	
 		
+	/** Returns the head node of a new parsetree
+	 * constructed from the provided list of tokens.
+	 */
 	private static Node<Token> makeParseTree(List<Token> tokens) {
 		if (tokens.size() == 0) {
 			return null;
@@ -114,6 +139,9 @@ class Proposition {
 		return headNode;
 	}	
 		
+	/** Inserts a new statement into an already ordered
+	 * list of atomic statements in its correct position.
+	 */
 	private static void insertStatement(LinkedList<Statement> statements, Statement newStatement) {
 		int i = 0;
 		for (Statement statement : statements) {
@@ -128,6 +156,9 @@ class Proposition {
 		statements.add(newStatement);
 	}	
 		
+	/** Taking in a list of tokens as its arguments, returns an
+	 * ordered list of all atomic statmenets contained in that list of tokens
+	 */
 	private LinkedList<Statement> makeStatementsOrdered(ArrayList<Token> tokens) {
 		LinkedList<Statement> orderedStatements = new LinkedList<Statement>();
 		for (Token token : tokens) {
@@ -197,7 +228,10 @@ class Proposition {
 		
 		return tokens;
 	}	
-		
+	
+	/** Creates the proper string representation of
+	 * the a proposition based on its tokens
+	 */
 	private static String stringFromTokens(ArrayList<Token> tokens) {
 		String string = "";
 		
@@ -238,7 +272,7 @@ class Proposition {
 		private final Letter[] data;
 		private final int hashCode;
 		
-		/** represents a letter */	
+		/** Represents a capital letter. */	
 		static enum Letter {
 			A(0), B(1), C(2), D(3), E(4), F(5), G(6), 
 			H(7), I(8), J(9), K(10), L(11), M(12),
@@ -387,6 +421,9 @@ class Proposition {
 			return string;
 		}
 		
+		/** returns true if this statement comes
+		 * before the other alphabetically
+		 */
 		public boolean before(Statement other) {
 			int length = data.length;
 			if (other.data.length < length) {
@@ -404,6 +441,9 @@ class Proposition {
 			return data.length < other.data.length;
 		}
 		
+		/** returns true if this statement comes 
+		 * after the other alphabetically
+		*/
 		public boolean after(Statement other) {
 			int length = data.length;
 			if (other.data.length < length) {
@@ -453,7 +493,8 @@ class Proposition {
 			return false;	
 		}
 	}	
-		
+	
+	/** Represents a logical connective in propositinal logic */
 	public static enum Operator implements Token {
 		NOT(0), AND(1), OR(2),
 		CONDITIONAL(3), 
@@ -465,14 +506,23 @@ class Proposition {
 			this.value = (byte)value;
 		}
 
+		/** Returns true if this operator has higher 
+		 * precedence than the other
+		 */
 		public boolean before(Operator other) {
 			return value < other.value;
 		}
 
+		/** Returns true if this operator has lower 
+		 * precedence than the other
+		 */
 		public boolean after(Operator other) {
 			return value > other.value;
 		}
 
+		/** Returns true if this operator has higher 
+		 * precedence than the other
+		 */
 		public boolean before(Token other) {
 			if (other instanceof Operator) {
 				Operator operatorOther = (Operator)other;
@@ -482,6 +532,9 @@ class Proposition {
 			}
 		}
 
+		/** Returns true if this operator has lower
+		 * precedence than the other
+		 */
 		public boolean after(Token other) {
 			if (other instanceof Operator) {
 				Operator operatorOther = (Operator)other;
@@ -514,6 +567,7 @@ class Proposition {
 		}
 	}
 
+	/** Represents an open or closed parenthesis */
 	private static enum Parenthesis implements Token {
 		OPEN,
 		CLOSED;
