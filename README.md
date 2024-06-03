@@ -56,7 +56,8 @@ is false, it's just a regular click. If both the primary and secondary are true,
 
 ## How to use it
 To run the program, navigate to the base directory of the project if you aren't yet there. Then, run
-the following command `. bash_config.sh`. This only has to be done once unless a new terminal has been opened
+the following command `. bash_config.sh`. This only works in Bash, so if you are using PowerShell or
+some other shell, you will need to set `CLASSPATH` yourself. This only has to be done once unless a new terminal has been opened
 or if your aliases or classpath have been modified. Once you've worked that out, run main with this template: 
 `java Main "[primary]" "[secondary]" [beat length]`. Insert your primary and secondary propositions within quotes,
 and the leangth of one beat in milliseconds. You may also add one extra parameter at the end, `false`, if you would
