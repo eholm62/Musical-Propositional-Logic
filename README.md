@@ -10,7 +10,7 @@ obtained it.
 its volume slighty for each variation.
 
 ## What is this project about? 
-In 2023, my AP Computer Science A teacher quickly introduced the class to
+In 2023, my AP Computer Science A teacher breifly introduced the class to
 propositional logic in order to give us a better understanding of boolean 
 expressions in Java. One major part of propositional logic we discussed 
 was the construction of truth tables. If you're unfamiliar, truth tables
