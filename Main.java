@@ -31,22 +31,25 @@ class Main {
 		
 		System.out.println(Arrays.toString(primaryTruthData));
 		System.out.println(Arrays.toString(secondaryTruthData));
-		
+
+		if (useAudio) {
+			StdAudio.read("accent.wav");
+			StdAudio.read("click.wav");	
+			StdAudio.read("ghost.wav");
+		}
+
 		i = 0;
 
 		// the code that runs every beat
-		final Runnable playBeat = () -> {
+		Runnable playBeat = () -> {
 			if (primaryTruthData[i]) {
 				if (secondaryTruthData[i]) {
-					if (useAudio) StdAudio.play("accent.wav");
 					System.out.println("+");
 				} else {
-					if (useAudio) StdAudio.play("click.wav"); 
 					System.out.println("-");
 				}
 			} else {
 				if (secondaryTruthData[i]) {
-					if (useAudio) StdAudio.play("ghost.wav");
 					System.out.println(".");
 				} else {
 					System.out.println();
@@ -55,9 +58,36 @@ class Main {
 			i++;
 			if (i >= primaryTruthData.length) {
 				i = 0;
+				System.out.println("Cycle Completed");
 			}
 		};
 
+		if (useAudio) {
+			playBeat = () -> {
+				if (primaryTruthData[i]) {
+					if (secondaryTruthData[i]) {
+						StdAudio.play("accent.wav");
+						System.out.println("+");
+					} else {
+						StdAudio.play("click.wav"); 
+						System.out.println("-");
+					}
+				} else {
+					if (secondaryTruthData[i]) {
+						StdAudio.play("ghost.wav");
+						System.out.println(".");
+					} else {
+						System.out.println();
+					}
+				}
+				i++;
+				if (i >= primaryTruthData.length) {
+					i = 0;
+					System.out.println("Cycle Completed");
+				}
+			};
+		}
+		
 		// initialize the scheduler
 		final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 

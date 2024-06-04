@@ -6,9 +6,8 @@ by Robert Sedgewick and Kevin Wayne of Princeton University, and can be found
 [here](https://introcs.cs.princeton.edu/java/stdlib/), which is where I 
 obtained it.
 
-[@Drkud](https://github.com/Drkud) created the sound effects contained within the 
-`accent.wav` and `ghost.wav` files, but I modified the ghost.wav file to make the 
-effect slightly softer.
+[@Drkud](https://github.com/Drkud) created the base sound effect, but I modified
+its volume slighty for each variation.
 
 ## What is this project about? 
 In 2023, my AP Computer Science A teacher quickly introduced the class to
@@ -55,6 +54,9 @@ secondary is true but the primary is false, it's a ghost. If the primary is true
 is false, it's just a regular click. If both the primary and secondary are true, it's an accent.
 
 ## How to use it
+ - Note that the sound effects can be very loud and that you should keep system volume very low when runnning.
+ I like to keep mine around 10% when testing, which allows me to hear everything but doesn't hurt my ears.
+
 To run the program, navigate to the base directory of the project if you aren't yet there. Then, run
 the following command `. bash_config.sh`. This only works in Bash, so if you are using PowerShell or
 some other shell, you will need to set `CLASSPATH` yourself. This only has to be done once unless a new terminal has been opened
