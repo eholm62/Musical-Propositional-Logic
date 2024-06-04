@@ -36,11 +36,11 @@ result to the right. Having done that, you'll have a fully completed truth table
 
 ![image](https://github.com/eholm62/Musical-Propositional-Logic/assets/133877996/6ae7a584-fb16-4ef0-a04d-a3e41e119787)
 
-I noticed that sometimes reading out the last column of the truth table creates in an interesting rhythm.
+I observed that sometimes reading out the last column of the truth table creates in an interesting rhythm.
 Each T represents a hit, and each F represents no hit. Each new row is a new beat. I decideed to write
-a program that takes in a propositional and plays you back the resulting rhythm. I thought that being 
+a program that takes in a proposition and plays back the resulting rhythm. I hypothesized that being 
 able to conceptualize a proposition as a rhythm could possibly unlock new intuition into the way 
-propositions work, and if not, it still has the potential to create interesting rythyms. 
+propositions work. If not, it still has the potential to create interesting rythyms. 
 
 I expanded the scope of the project such that there are four possible scenarios on each beat. Those are:
 rest, ghost, click, and accent. The new possibilities are ghost and accent, because rest and click are
