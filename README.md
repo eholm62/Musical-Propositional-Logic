@@ -57,6 +57,12 @@ is false, it's just a regular click. If both the primary and secondary are true,
  - Note that the sound effects can be very loud and that you should keep system volume very low when runnning.
  I like to keep mine around 10% when testing, which allows me to hear everything but doesn't hurt my ears.
 
+First, you'll need to clone the repository to your machine if you want to be able to hear audio. 
+
+If you only want to see the visual representation, which I don't recommend, you can open the repository in codespaces, 
+replit, or some other online IDE. You will need to add the extra command line argument `false` each time you 
+run the program, otherwise nothing will happen at all.
+
 To run the program, navigate to the base directory of the project if you aren't yet there. Then, run
 the following command `. bash_config.sh`. This only works in Bash, so if you are using PowerShell or
 some other shell, you will need to set `CLASSPATH` yourself. This only has to be done once unless a new terminal has been opened
