@@ -70,17 +70,13 @@ or if your aliases or classpath have been modified. Once you've worked that out,
 `java Main "[primary]" "[secondary]" [beat length]`. Insert your primary and secondary propositions within quotes,
 and the leangth of one beat in milliseconds. You may also add one extra parameter at the end, `false`, if you would
 like the program to run silently and only print a visual representation of the rhythm. Here is an example of a
-valid execution: `java Main "-A v B ^ C > D <> E" "A V B V C V D V E" 100`.
+valid execution: `java Main "-A v B ^ C > D <> E" "A v B v C v D v E" 100`.
 
-If you want to only take the first proposition into account and essentially ignore the second, there is a way to do it,
-but it's kind of annoying to do. If at some point I come back to this project, I will make it easier to do this.
-Until then, you have to construct a secondary proposition that is always false, and has the same number of possible 
-combinations. You can do this by reusing the same atomic statements from the primary proposition in the secondary proposition. 
-Connect them all with the conjunction (AND). Then, switch any one of the atomic statements `A`, with the expression `(A ^ -A)`.
-For example, if you have the primary expression `A V B ^ -C > D <> E`, you can provide the secondary expression 
-`A ^ B ^ C ^ D ^ (E ^ -E)`, in order to make sure only the primary proposition contributes to the rhythm.
+If you want to only take the first proposition into account and not include a secondary proposition, you can
+do so by using `SimpleMain`. It works nearly identically to `Main`, but it ony expects one proposition.
+Here is an example of a valid execution of `SimpleMain`: `java SimpleMain "-A v B ^ C > D <> E" 100`.
 
-If you want to use your own sound effects you can delete the previously existing wave files and replace 
+If you want to use your own sound effects, you can delete the previously existing wave files and replace 
 them with your own, making sure they're named the same as the original files. The shorter the sound effects,
 the shorter you can make the beat length. In general the beat length should not be any shorter than the length
 of the longest sound effect.
