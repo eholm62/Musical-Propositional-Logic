@@ -1,13 +1,13 @@
 ## Authors and Contributers
 I wrote everything this repository contains, excluding the contents within `libs/stdlib`. 
 I inserted package statements that were not originally present at the beginning of
-each source file, however, all other source code contained there is authored 
+each source file, but all other source code contained there is authored 
 by Robert Sedgewick and Kevin Wayne of Princeton University, and can be found 
 [here](https://introcs.cs.princeton.edu/java/stdlib/), which is where I 
 obtained it.
 
 [@Drkud](https://github.com/Drkud) created the base sound effect, but I modified
-its volume slighty for each variation.
+it slighty for each variation.
 
 ## What is this project about? 
 In 2023, my AP Computer Science A teacher breifly introduced the class to
@@ -37,7 +37,7 @@ result to the right. Having done that, you'll have a fully completed truth table
 ![image](https://github.com/eholm62/Musical-Propositional-Logic/assets/133877996/6ae7a584-fb16-4ef0-a04d-a3e41e119787)
 
 I observed that sometimes reading out the last column of the truth table creates an interesting rhythm.
-Each T represents a hit, and each F represents no hit. Each new row is a new beat. I decideed to write
+Each "T" represents a hit, and each "F" represents a rest. Each new row is a new beat. I decideed to write
 a program that takes in a proposition and plays back the resulting rhythm. I hypothesized that being 
 able to conceptualize a proposition as a rhythm could possibly unlock new intuition into the way 
 propositions work. If not, it still has the potential to create interesting rythyms. 
@@ -59,9 +59,10 @@ is false, it's just a regular click. If both the primary and secondary are true,
 
 First, you'll need to clone the repository to your machine if you want to be able to hear audio. 
 
-If you only want to see the visual representation, which I don't recommend, you can open the repository in codespaces, 
-replit, or some other online IDE. You will need to add the extra command line argument `false` each time you 
-run the program, otherwise nothing will happen at all.
+If you only want to see the visual representation, which I don't recommend, you will need to add the extra 
+command line argument `false` each time you run the program. This option was put into place so that 
+this program can be run in an online IDE such as Replit or Github Codespaces. If you attempt to
+use audio in an online IDE, nothing will happen at all.
 
 To run the program, navigate to the base directory of the project if you aren't yet there. Then, run
 the following command `. bash_config.sh`. This only works in Bash, so if you are using PowerShell or
